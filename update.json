@@ -1,11 +1,11 @@
 {
-  "version": "0.1.2",
-  "notes": "Update to version 0.1.2",
-  "pub_date": "2026-04-28T23:11:38Z",
+  "version": "0.1.3",
+  "notes": "Update to version 0.1.3",
+  "pub_date": "2026-04-28T23:14:13Z",
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRjNneUVtZGU2UTZ4OFpTWWZETkZYTUV2b2lPQkpDSTdQZ3ZhRnhudDIvV3A0c3phTDROUHZIUUpWNHVtZzk5UlJ3b1MxU1ppWXFtdlNIb2lLQnpLbkdzNVY3VkZjL3dzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzc3NDA3MDk4CWZpbGU6SW5mbHVlbmNlTGF1bmNoZXJfMC4xLjJfeDY0X2VuLVVTLnppcAoyWkxKNnVsdkQ5Ym9EMldCWHRtY3lZN2NmamJyVFY5UEdjUjhteWRheGJ2WmF2YUNCMjU4MGRLSjh4RXBJdVMzQkFaUXhPYkJJd09lOHdQYXdIODJDdz09Cg==",
-      "url": "https://github.com/Fourcade268/InfLauncher/releases/download/0.1.2/InfluenceLauncher_0.1.2_x64_en-US.zip"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRjNneUVtZGU2UTh4akdNTDduSGhaRU9nRU83UFl0aGJ6YU16YlpaMGZmMDlQOGRqbzdjRXE0RFNmeGpyenovUFpNMTFJNFR4WTZwcERFajZsYzRVdDk4eVljak1ORVFFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzc3NDA3MjUzCWZpbGU6SW5mbHVlbmNlTGF1bmNoZXJfMC4xLjNfeDY0X2VuLVVTLnppcAo2T3lZakhQYk4za0lSUzVwVFNZaXR1aElYRkhqaWJNeTNHQi93ZHhzVXZTTEJ0SUpPR3pHWjlFenVMM25qa0M1NElSOEdOVDRiVnJvdEhpRTU2WXpCZz09Cg==",
+      "url": "https://github.com/Fourcade268/InfLauncher/releases/download/0.1.3/InfluenceLauncher_0.1.3_x64_en-US.zip"
     }
   }
 }
