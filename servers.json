@@ -44,6 +44,11 @@
       "port": 2302,
       "queryport": 2303,
       "mods": []
+    },
+    {
+      "port": 2702,
+      "queryport": 2703,
+      "mods": []
     }
   ],
   "Buttons": [
