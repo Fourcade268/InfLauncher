@@ -11,7 +11,7 @@
       "port": 2402,
       "queryport": 2403,
       "Status": "",
-      "Locked": 1,
+      "Locked": 0,
       "mods": [
         "1559212036",
         "2545327648",
@@ -45,7 +45,7 @@
     {
       "port": 2302,
       "queryport": 2303,
-      "Status": "123",
+      "Status": "",
       "Locked": 0,
       "mods": [
         "1559212036",
@@ -79,8 +79,8 @@
     {
       "port": 2702,
       "queryport": 2703,
-      "Status": "Тех.работы",
-      "Locked": 1,
+      "Status": "",
+      "Locked": 0,
       "mods": []
     }
   ],
