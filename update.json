@@ -1,0 +1,10 @@
+{
+  "version": "0.1.1",
+  "pub_date": "2026-04-28T20:52:00Z",
+  "platforms": {
+    "windows-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRjNneUVtZGU2UTRtUmM4Wlh5T3FnTjhVTjlqZUM2TERldW9pVGRzVVRkSXNJemlYSktXc0x4YmdhTXdFUEowTnBSa2tmQ01UeWpmcVkxV0lpRDBzZFV5Ri82OW5GWUFJPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzc3NDA0MjMzCWZpbGU6SW5mbHVlbmNlTGF1bmNoZXJfMC4xLjFfeDY0X2VuLVVTLnppcAp4U2ZPMG9yazBFeHJZakIyRkxrWjU2Ykg1N0NwdHRKTHEyOFpOM2tab28yK2ZsMloxVDhYMDFRd1duZDYzcHJBemhWYTJHL2FMamx1UnI5ajlvcytBQT09Cg==",
+      "url": "https://github.com/Fourcade268/InfLauncher/releases/download/v0.1.1/InfluenceLauncher_0.1.1_x64_en-US.msi.zip"
+    }
+  }
+}
