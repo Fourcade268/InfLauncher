@@ -1,11 +1,11 @@
 {
-  "version": "0.1.4",
-  "notes": "Update to version 0.1.4",
-  "pub_date": "2026-04-28T23:19:00Z",
+  "version": "0.1.7",
+  "notes": "Update to version 0.1.7",
+  "pub_date": "2026-04-29T11:30:33Z",
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRjNneUVtZGU2UTY5dHBwL1hKTXlML25KVjRRd2daaDJkaUc5SC8xUkx6SHFYTjA1eUpuMHRyQWdqYmtLM3pUSzNEWmNYK016N3lHWDQ5bEYzVXRrNDA2eDZPMEI3VEFNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzc3NDA3NTQwCWZpbGU6SW5mbHVlbmNlTGF1bmNoZXJfMC4xLjRfeDY0X2VuLVVTLnppcApkeVd3UFhpcXA5TjloWTB3a0J4Rjg0Mk1WSHB0MVBJVFhCRHdlWE85WXBiNXZTWTVvaG9rN3lJbTNvVWRHTHV5WUlsZkR4RUJSYWE4bmxvN2lRellEdz09Cg==",
-      "url": "https://github.com/Fourcade268/InfLauncher/releases/download/0.1.4/InfluenceLauncher_0.1.4_x64_en-US.zip"
+      "signature": "<empty>",
+      "url": "https://github.com/Fourcade268/InfLauncher/releases/download/0.1.7/InfluenceLauncher_0.1.7_x64_en-US.msi"
     }
   }
 }
