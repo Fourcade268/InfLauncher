@@ -1,11 +1,11 @@
 {
-  "version": "0.1.0",
-  "notes": "Update to version 0.1.0",
-  "pub_date": "2026-04-29T17:12:29Z",
+  "version": "0.1.1",
+  "notes": "Update to version 0.1.1",
+  "pub_date": "2026-04-30T14:50:20Z",
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTTDA2TDJCKzhyNjZ4SVc1Um41RHdwMUNBOFI4S2hzNWZ1QlF6L2FSajg3MUpKQWRJb1RqOFNNZzNsRHJxTGJPazZJYzJwR3pLWkVMT2k4dERhVlpzYVJuZHNVQ2Rya0FVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzc3NDcxOTQ5CWZpbGU6SW5mTGF1bmNoZXJTZXR1cF8wLjEuMF94NjQubXNpCkJpWG1MNFlQRkZma1V5MU1vd0F6VFVZVkwwQnpTb20xZ2lLUUhHR0JsbWtZS2toWS9ScXdza1NPaUZReG5tYWRSSDljOGVxdXRKUGZJendvUXdHcER3PT0K",
-      "url": "https://github.com/Fourcade268/InfLauncher/releases/download/0.1.0/InfLauncherSetup_0.1.0_x64.msi"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTTDA2TDJCKzhyNjJOcDZBdXpYQ25MU0dTR0JqTTBVc3Vnd01HN2l5V0w2ckxaeW1xV2RJV0xYRGZOQVdua1kzVVhpZXlpRHp4NHNxY1hyYkVIYVRMQVQvQ1drVXN6ekFJPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzc3NTQ5ODIwCWZpbGU6SW5mTGF1bmNoZXJTZXR1cF8wLjEuMV94NjQubXNpClZIdkFnaWdtUlB1UThYRkVCZ3E4NUVxQ3VITjlTOU9TeVpqSm9RRkdqWkdPK1ltUk4zaVFUNm8wak93SmUwbXozNkI0dUZUR25WVGVVMFFNUlNEMEN3PT0K",
+      "url": "https://github.com/Fourcade268/InfLauncher/releases/download/0.1.1/InfLauncherSetup_0.1.1_x64.msi"
     }
   }
 }
