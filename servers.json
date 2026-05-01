@@ -80,27 +80,6 @@
         "2798276059",
         "2962310218"
       ]
-    },
-    {
-      "port": 2502,
-      "queryport": 2503,
-      "Status": "ТЕСТ",
-      "Locked": 0,
-      "mods": []
-    },
-    {
-      "port": 2602,
-      "queryport": 2603,
-      "Status": "ТЕСТ",
-      "Locked": 0,
-      "mods": []
-    },
-    {
-      "port": 2702,
-      "queryport": 2703,
-      "Status": "ТЕСТ",
-      "Locked": 0,
-      "mods": []
     }
   ],
   "Buttons": [
