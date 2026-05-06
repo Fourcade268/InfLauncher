@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "DayZ Influence Launcher",
+  "version": "0.1.4",
+  "identifier": "com.influence.launcher",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:5173",
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "DayZ Influence Launcher",
+        "width": 1280,
+        "height": 720,
+        "minWidth": 1280,
+        "minHeight": 720,
+        "resizable": true,
+        "fullscreen": false,
+        "devtools": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEVCMkJFRjA3RjZBMkQzOEIKUldTTDA2TDJCKzhyNjBRUENwMU9NYjAwZmNzUnMyUXlEMXFWSGk0NmxyOUVTUWg1QmF0d0FyaFAK",
+      "endpoints": [
+        "https://raw.githubusercontent.com/Fourcade268/InfLauncher/main/update.json",
+        "https://cdn.jsdelivr.net/gh/Fourcade268/InfLauncher@main/update.json",
+        "https://inflauncher.pages.dev/update.json"
+      ],
+      "timeout": 3
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "resources": [
+      "steam_api64.dll",
+      "steam_appid.txt"
+    ],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
+}
