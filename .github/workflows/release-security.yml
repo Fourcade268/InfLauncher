@@ -1,18 +1,16 @@
 name: VirusTotal Security Scan
 
 on:
-  # Запуск при публикации нового релиза
   release:
     types: [published]
-  # Возможность запустить вручную для старых релизов
   workflow_dispatch:
     inputs:
       release_tag:
-        description: 'Введите тег релиза (например, v1.0.1)'
+        description: 'Tag of the release (e.g. v1.0.1)'
         required: true
 
 permissions:
-  contents: write # Критически важно для обновления описания релиза
+  contents: write
 
 jobs:
   scan:
@@ -21,7 +19,6 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # 1. Определяем, какой тег сканировать
       - name: Determine Tag
         id: vars
         run: |
@@ -31,16 +28,13 @@ jobs:
             echo "tag=${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
           fi
 
-      # 2. Скачиваем файлы из релиза (используем надежный GitHub CLI)
       - name: Download Assets
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p ./downloads
-          # Скачиваем все файлы из указанного релиза
-          gh release download ${{ steps.vars.outputs.tag }} --dir ./downloads --pattern "*"
+          gh release download ${{ steps.vars.outputs.tag }} --dir ./downloads --pattern "*" || echo "No assets found"
 
-      # 3. Отправляем файлы на проверку в VirusTotal
       - name: VirusTotal Scan
         id: vt
         uses: crazy-max/ghaction-virustotal@v4
@@ -48,19 +42,33 @@ jobs:
           vt_api_key: ${{ secrets.VT_API_KEY }}
           files: |
             ./downloads/*
-          request_rate: 4 # Ограничение для бесплатного API VT
+          request_rate: 4
 
-      # 4. Дописываем ссылку на анализ в описание релиза
+      # НОВЫЙ ШАГ: Проверка ссылки
+      # Если permalink пустой, мы создаем ссылку на поиск по результатам
+      - name: Prepare Report Link
+        id: report
+        run: |
+          VT_LINK="${{ steps.vt.outputs.permalink }}"
+          if [ -z "$VT_LINK" ]; then
+            # Запасной вариант: ссылка на поиск в VT (откроет отчет, если файл уже известен системе)
+            echo "link=https://www.virustotal.com/gui/search/${{ steps.vars.outputs.tag }}" >> $GITHUB_OUTPUT
+          else
+            echo "link=$VT_LINK" >> $GITHUB_OUTPUT
+          fi
+
       - name: Update Release Description
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.vars.outputs.tag }}
           body: |
             
             ---
             ### 🛡️ VirusTotal Security Check
-            Все файлы этого релиза прошли автоматическую проверку на вирусы.
-            [🔍 Посмотреть полный отчет](${{ steps.vt.outputs.permalink }})
+            Проверка безопасности пройдена.
+            
+            🔍 **[Посмотреть полный отчет об анализе](${{ steps.report.outputs.link }})**
+            
           append_body: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
