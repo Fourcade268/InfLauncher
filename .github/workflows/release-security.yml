@@ -1,25 +1,28 @@
-name: VirusTotal Check
+name: VirusTotal Security Scan
 
 on:
+  # Запуск при публикации нового релиза
   release:
     types: [published]
+  # Возможность запустить вручную для старых релизов
   workflow_dispatch:
     inputs:
       release_tag:
-        description: 'Tag of the release to scan'
+        description: 'Введите тег релиза (например, v1.0.1)'
         required: true
 
 permissions:
-  contents: write
+  contents: write # Критически важно для обновления описания релиза
 
 jobs:
-  virustotal:
+  scan:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Set Tag
+      # 1. Определяем, какой тег сканировать
+      - name: Determine Tag
         id: vars
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
@@ -28,24 +31,26 @@ jobs:
             echo "tag=${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
           fi
 
-      - name: Download Assets via GH CLI
+      # 2. Скачиваем файлы из релиза (используем надежный GitHub CLI)
+      - name: Download Assets
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          mkdir -p ./assets
-          # Скачиваем только нужные типы файлов (exe, zip, и т.д.)
-          # Если хочешь все файлы, используй --pattern "*"
-          gh release download ${{ steps.vars.outputs.tag }} --dir ./assets --pattern "*.exe" --pattern "*.zip" --pattern "*.tar.gz"
+          mkdir -p ./downloads
+          # Скачиваем все файлы из указанного релиза
+          gh release download ${{ steps.vars.outputs.tag }} --dir ./downloads --pattern "*"
 
+      # 3. Отправляем файлы на проверку в VirusTotal
       - name: VirusTotal Scan
         id: vt
         uses: crazy-max/ghaction-virustotal@v4
         with:
           vt_api_key: ${{ secrets.VT_API_KEY }}
           files: |
-            ./assets/*
-          request_rate: 4 
+            ./downloads/*
+          request_rate: 4 # Ограничение для бесплатного API VT
 
+      # 4. Дописываем ссылку на анализ в описание релиза
       - name: Update Release Description
         uses: softprops/action-gh-release@v1
         with:
@@ -53,8 +58,9 @@ jobs:
           body: |
             
             ---
-            ### 🛡️ Security Analysis
-            [🔍 VirusTotal Report](${{ steps.vt.outputs.permalink }})
+            ### 🛡️ VirusTotal Security Check
+            Все файлы этого релиза прошли автоматическую проверку на вирусы.
+            [🔍 Посмотреть полный отчет](${{ steps.vt.outputs.permalink }})
           append_body: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
