@@ -2,7 +2,16 @@ name: VirusTotal Check
 
 on:
   release:
-    types: [published] # Запускается, когда релиз опубликован
+    types: [published]
+  workflow_dispatch: # Позволяет запускать вручную из вкладки Actions
+    inputs:
+      release_tag:
+        description: 'Tag of the release to scan'
+        required: true
+        default: 'v1.0.0'
+
+permissions:
+  contents: write
 
 jobs:
   virustotal:
@@ -11,14 +20,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # В этом шаге мы скачиваем файлы, которые ты уже прикрепил к релизу вручную
-      # Либо, если ты собираешь их в этом же Workflow, пропусти этот шаг
+      # Определяем, какой тег использовать: из события релиза или введенный вручную
+      - name: Set Tag
+        id: vars
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "tag=${{ github.event.inputs.release_tag }}" >> $GITHUB_OUTPUT
+          else
+            echo "tag=${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
+          fi
+
       - name: Download Release Assets
         uses: dsaltares/fetch-gh-release-asset@master
         with:
-          version: ${{ github.event.release.id }}
+          version: "tags/${{ steps.vars.outputs.tag }}" # Используем выбранный тег
           regex: true
-          file: ".*\\.(exe|zip|dmg|apk|tar\\.gz)" # Какие расширения проверять
+          file: ".*\\.(exe|zip|dmg|apk|tar\\.gz)"
           target: './assets/'
 
       - name: VirusTotal Scan
@@ -27,19 +44,16 @@ jobs:
         with:
           vt_api_key: ${{ secrets.VT_API_KEY }}
           files: |
-            ./assets/*.exe
-            ./assets/*.zip
-          # Для бесплатного API лучше добавить задержку, если файлов больше одного
+            ./assets/*
           request_rate: 4 
 
       - name: Update Release Description
         uses: softprops/action-gh-release@v1
         with:
-          # Этот код добавит красивый блок в конец описания твоего релиза
+          tag_name: ${{ steps.vars.outputs.tag }} # Указываем, какой именно релиз обновить
           body: |
             ---
             ### 🛡️ Security Analysis (VirusTotal)
-            The files have been scanned and verified.
             [🔍 View Full Analysis Report](${{ steps.vt.outputs.permalink }})
           append_body: true
         env:
