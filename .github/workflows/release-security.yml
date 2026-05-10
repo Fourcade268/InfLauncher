@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       release_tag:
-        description: 'Tag of the release (e.g. v1.0.1)'
+        description: 'Tag of the release'
         required: true
 
 permissions:
@@ -33,7 +33,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p ./downloads
-          gh release download ${{ steps.vars.outputs.tag }} --dir ./downloads --pattern "*" || echo "No assets found"
+          gh release download ${{ steps.vars.outputs.tag }} --dir ./downloads --pattern "*"
 
       - name: VirusTotal Scan
         id: vt
@@ -43,16 +43,17 @@ jobs:
           files: |
             ./downloads/*
           request_rate: 4
+          monitor: true # ОЧЕНЬ ВАЖНО: заставляет экшен ждать отчета и получить прямую ссылку
 
-      # НОВЫЙ ШАГ: Проверка ссылки
-      # Если permalink пустой, мы создаем ссылку на поиск по результатам
+      # Если прямая ссылка всё равно не пришла, генерируем ссылку по хешу первого файла
       - name: Prepare Report Link
         id: report
         run: |
           VT_LINK="${{ steps.vt.outputs.permalink }}"
           if [ -z "$VT_LINK" ]; then
-            # Запасной вариант: ссылка на поиск в VT (откроет отчет, если файл уже известен системе)
-            echo "link=https://www.virustotal.com/gui/search/${{ steps.vars.outputs.tag }}" >> $GITHUB_OUTPUT
+            # Берем sha256 первого найденного файла в папке downloads
+            HASH=$(sha256sum ./downloads/* | head -n 1 | awk '{print $1}')
+            echo "link=https://www.virustotal.com/gui/file/$HASH" >> $GITHUB_OUTPUT
           else
             echo "link=$VT_LINK" >> $GITHUB_OUTPUT
           fi
@@ -65,9 +66,9 @@ jobs:
             
             ---
             ### 🛡️ VirusTotal Security Check
-            Проверка безопасности пройдена.
+            Файлы проверены на наличие угроз.
             
-            🔍 **[Посмотреть полный отчет об анализе](${{ steps.report.outputs.link }})**
+            🔍 **[Посмотреть подробный отчет об анализе](${{ steps.report.outputs.link }})**
             
           append_body: true
         env:
